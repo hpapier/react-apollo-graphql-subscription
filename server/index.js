@@ -21,7 +21,6 @@ app.use('/graphql', bodyParser.json(), graphqlExpress({ schema, graphiql: true }
 // Create a node server with the express server
 const ws = createServer(app);
 
-
 // Run the server
 ws.listen(PORT, () => {
   new SubscriptionServer(
@@ -36,4 +35,6 @@ ws.listen(PORT, () => {
       path: '/subscriptions'
     }
   );
+
+  console.log(`Server listen on port ${PORT}`);
 });
