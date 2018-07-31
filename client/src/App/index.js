@@ -5,7 +5,7 @@ import './index.css';
 import LoggedOut from './LoggedOut';
 
 const LoggedIn = () => (
-  <div>
+  <div id="logged-in-box">
     <Tool />
     <Comment />
   </div>

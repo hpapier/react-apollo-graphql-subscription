@@ -1,0 +1,37 @@
+#post-box {
+  width: 50%;
+  height: 100vh;
+  display: flex;
+  overflow: scroll;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  background: #fcfcfd;
+}
+
+.post-box-item {
+  width: 100%;
+  border-bottom: 1px solid #DCE3E6;
+}
+
+.post-box-item:hover {
+  background: #f7f7f7;
+}
+
+.post-box-author {
+  margin-top: 15px;
+  color: #323E42;
+  margin-left: 10px;
+  margin-bottom: 5px;
+  font-size: 1em;
+  font-weight: 600;
+  font-family: 'Source sans pro', sans-serif;
+}
+
+.post-box-content {
+  margin-bottom: 15px;
+  margin-left: 10px;
+  font-size: .875em;
+  font-weight: 300;
+  font-family: 'Source sans pro', sans-serif;
+}

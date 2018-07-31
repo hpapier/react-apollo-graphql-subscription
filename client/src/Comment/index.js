@@ -1,6 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
+import './index.css';
 
 const FETCH_POST_QUERY = gql`
   query {
@@ -29,10 +30,14 @@ class Posts extends React.Component {
 
   render() {
     const { post } = this.props;
-    console.log(post);
     return (
-      <div>
-        Hello
+      <div id="post-box">
+        {post.map(item => (
+          <div key={item.id} className="post-box-item">
+            <div className="post-box-author">{item.author}</div>
+            <div className="post-box-content">{item.content}</div>
+          </div>
+        ))}
       </div>
     );
   }
@@ -46,6 +51,8 @@ export default class Comment extends React.Component {
         if (loading)
           return <div>Loading...</div>;
 
+        if (error)
+          return <div>Error</div>;
         const subscribeToMorePost = () => {
           subscribeToMore({
             document: POST_ADDED_SUBSCRIPTION,
@@ -63,12 +70,12 @@ export default class Comment extends React.Component {
 
               const postAdded = subscriptionData.data.postAdded;
 
-              return Object.assign({}, prev, { post: [...prev.post, postAdded] });
+              return Object.assign({}, prev, { getPost: [...prev.getPost, postAdded] });
             }
           });
         }
-
-        return <Posts post={data.post} subscribeToMorePost={subscribeToMorePost} />;
+        console.log(data);
+        return <Posts post={data.getPost} subscribeToMorePost={subscribeToMorePost} />;
       }}
       </Query>
     );
