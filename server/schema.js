@@ -62,14 +62,21 @@ const resolvers = {
 
   Mutation: {
     addUser: async (parent, { name, password }, ctx) => {
-      const res = await client.query('INSERT INTO userInfo (name, password) VALUES ($1, $2) RETURNING *', [name, password]);
+      console.log('IN mutation');
+      try {
+        const res = await client.query('INSERT INTO userInfo (name, password) VALUES ($1, $2) RETURNING *', [name, password]);
+        // =========
+        console.log('-> AddPost Mutation, response :');
+        console.log(res.rows[0]);
+        // =========
+        return { id: res.rows[0].id, name: res.rows[0].name, password: res.rows[0].password };
+      } catch (e) {
+        console.log('-> ADDUSER MUTATION: IN CATCH');
+        console.log(e);
+        throw new error('CRASH SERVER');
+      } 
 
-      // =========
-      console.log('-> AddPost Mutation, response :');
-      console.log(res.rows[0]);
-      // =========
 
-      return { id: res.rows[0].id, name: res.rows[0].name, password: res.rows[0].password };
     },
 
     addPost: async (parent, { content, author }, ctx) => {
