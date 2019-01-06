@@ -2,10 +2,10 @@ const CONFIG = {
   HOST: 'localhost',
   PORT: 4000,
   DBUSER: 'postgres',
-  DBPWD: '',
+  DBPWD: '123',
   DBNAME: 'subscription',
   DBPORT: 5432,
-  DBHOST: 'localhost'
+  DBHOST: '127.0.0.1'
 }
 
 module.exports = CONFIG;

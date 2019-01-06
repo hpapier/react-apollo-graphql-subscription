@@ -22,7 +22,7 @@ app.use('/graphql', bodyParser.json(), graphqlExpress({ schema, graphiql: true }
 const ws = createServer(app);
 
 // Run the server
-ws.listen(PORT, () => {
+ws.listen(PORT, "0.0.0.0", 511, () => {
   new SubscriptionServer(
     {
       execute,
